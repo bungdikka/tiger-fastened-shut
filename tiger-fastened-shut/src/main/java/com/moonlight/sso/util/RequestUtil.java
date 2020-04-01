@@ -26,6 +26,10 @@ public class RequestUtil {
 	 * @param request
 	 */
 	public static void printRequest(HttpServletRequest request) {
+		String requestURI = request.getRequestURI();
+		if("/error".equals(requestURI)) {
+			return;
+		}
 		logger.info(getLogWithTag(request.getRequestURI(), logTagPl));
 		logger.info(getLogWithTag("headers begin", logTagEq));
 		Enumeration<String> headerNames = request.getHeaderNames();

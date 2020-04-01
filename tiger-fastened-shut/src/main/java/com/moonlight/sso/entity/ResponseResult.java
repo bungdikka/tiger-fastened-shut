@@ -4,6 +4,7 @@ public class ResponseResult {
 	private int code;
 	private String msg;
 	private Object data;
+	private int status=200;
 
 	public ResponseResult(int code, String msg, Object data) {
 		super();
@@ -42,4 +43,14 @@ public class ResponseResult {
 	public void setData(Object data) {
 		this.data = data;
 	}
+
+	public int getStatus() {
+		return status;
+	}
+
+	public void setStatus(int status) {
+		this.status = status;
+	}
+	
+	
 }

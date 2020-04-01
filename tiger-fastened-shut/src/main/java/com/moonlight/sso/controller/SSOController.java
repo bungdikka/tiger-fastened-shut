@@ -2,12 +2,14 @@ package com.moonlight.sso.controller;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.validation.annotation.Validated;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
-import com.moonlight.sso.entity.RegisterPhone;
 import com.moonlight.sso.entity.RegisterOauth;
+import com.moonlight.sso.entity.RegisterPhone;
 import com.moonlight.sso.entity.ResponseResult;
 import com.moonlight.sso.service.SSOService;
 
@@ -26,7 +28,7 @@ public class SSOController {
 
 	@PostMapping("/signinByPhoneNum")
 	public ResponseResult signinByPhoneNum(@Validated RegisterPhone registerPhone) {
-		return new ResponseResult(registerPhone);
+		return ssoService.signinByPhoneNum(registerPhone);
 	}
 	
 	@PostMapping("/signinByOauth")
