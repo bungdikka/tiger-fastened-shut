@@ -1,23 +1,36 @@
 package com.moonlight.sso.controller;
 
-import java.util.HashMap;
-import java.util.Map;
-
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
-import com.moonlight.sso.entity.Register;
+import com.moonlight.sso.entity.RegisterPhone;
+import com.moonlight.sso.entity.RegisterOauth;
+import com.moonlight.sso.entity.ResponseResult;
+import com.moonlight.sso.service.SSOService;
 
+/**
+ * SSO控制层
+ * 
+ * @author sunan
+ * @since 2020-04-01
+ */
 @RestController
 @RequestMapping("/sso")
 public class SSOController {
+
+	@Autowired
+	SSOService ssoService;
+
+	@PostMapping("/signinByPhoneNum")
+	public ResponseResult signinByPhoneNum(@Validated RegisterPhone registerPhone) {
+		return new ResponseResult(registerPhone);
+	}
 	
-	@PostMapping("/regist")
-	public Map<String,Object> regist(@Validated Register register) {
-		Map<String,Object> map = new HashMap<>();
-		map.put("msg", register.getPhoneNum());
-		return map;
+	@PostMapping("/signinByOauth")
+	public ResponseResult signinByOauth(@Validated RegisterOauth registerOauth) {
+		return new ResponseResult(registerOauth);
 	}
 }
